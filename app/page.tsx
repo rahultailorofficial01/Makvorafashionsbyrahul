@@ -22,6 +22,8 @@ import BellBottomOverviewModal from "@/components/BellBottomOverviewModal";
 import BellBottomCustomizerModal from "@/components/BellBottomCustomizerModal";
 import PathaniOverviewModal from "@/components/PathaniOverviewModal";
 import PathaniCustomizerModal from "@/components/PathaniCustomizerModal";
+import SherwaniOverviewModal from "@/components/SherwaniOverviewModal";
+import SherwaniCustomizerModal from "@/components/SherwaniCustomizerModal";
 
 export default function Home() {
   const [isFittingOpen, setIsFittingOpen] = useState(false);
@@ -35,6 +37,8 @@ export default function Home() {
   const [isBellBottomCustomizerOpen, setIsBellBottomCustomizerOpen] = useState(false);
   const [isPathaniOverviewOpen, setIsPathaniOverviewOpen] = useState(false);
   const [isPathaniCustomizerOpen, setIsPathaniCustomizerOpen] = useState(false);
+  const [isSherwaniOverviewOpen, setIsSherwaniOverviewOpen] = useState(false);
+  const [isSherwaniCustomizerOpen, setIsSherwaniCustomizerOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<ProductItem | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
@@ -61,6 +65,8 @@ export default function Home() {
       setIsTrousersOverviewOpen(true);
     } else if (product.id === "MKV-002") {
       setIsSafariOverviewOpen(true);
+    } else if (product.id === "MKV-003") {
+      setIsSherwaniOverviewOpen(true);
     } else if (product.id === "MKV-004") {
       setIsBellBottomOverviewOpen(true);
     } else if (product.id === "MKV-005") {
@@ -202,6 +208,21 @@ export default function Home() {
         <PathaniCustomizerModal
           isOpen={isPathaniCustomizerOpen}
           onClose={() => setIsPathaniCustomizerOpen(false)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Sherwanis Overview Page */}
+        <SherwaniOverviewModal
+          isOpen={isSherwaniOverviewOpen}
+          onClose={() => setIsSherwaniOverviewOpen(false)}
+          onOpenCustomizer={() => setIsSherwaniCustomizerOpen(true)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Sherwanis Style Customizer Modal */}
+        <SherwaniCustomizerModal
+          isOpen={isSherwaniCustomizerOpen}
+          onClose={() => setIsSherwaniCustomizerOpen(false)}
           onAddToCart={handleAddToCart}
         />
 
