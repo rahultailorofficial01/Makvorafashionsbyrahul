@@ -18,6 +18,8 @@ import SafariCustomizerModal from "@/components/SafariCustomizerModal";
 import SafariOverviewModal from "@/components/SafariOverviewModal";
 import TrousersOverviewModal from "@/components/TrousersOverviewModal";
 import TrousersCustomizerModal from "@/components/TrousersCustomizerModal";
+import BellBottomOverviewModal from "@/components/BellBottomOverviewModal";
+import BellBottomCustomizerModal from "@/components/BellBottomCustomizerModal";
 
 export default function Home() {
   const [isFittingOpen, setIsFittingOpen] = useState(false);
@@ -27,6 +29,8 @@ export default function Home() {
   const [isSafariCustomizerOpen, setIsSafariCustomizerOpen] = useState(false);
   const [isTrousersOverviewOpen, setIsTrousersOverviewOpen] = useState(false);
   const [isTrousersCustomizerOpen, setIsTrousersCustomizerOpen] = useState(false);
+  const [isBellBottomOverviewOpen, setIsBellBottomOverviewOpen] = useState(false);
+  const [isBellBottomCustomizerOpen, setIsBellBottomCustomizerOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<ProductItem | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
@@ -53,6 +57,8 @@ export default function Home() {
       setIsTrousersOverviewOpen(true);
     } else if (product.id === "MKV-002") {
       setIsSafariOverviewOpen(true);
+    } else if (product.id === "MKV-004") {
+      setIsBellBottomOverviewOpen(true);
     } else {
       setQuickViewProduct(product);
     }
@@ -160,6 +166,21 @@ export default function Home() {
         <TrousersCustomizerModal
           isOpen={isTrousersCustomizerOpen}
           onClose={() => setIsTrousersCustomizerOpen(false)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Bell Bottoms Overview Page */}
+        <BellBottomOverviewModal
+          isOpen={isBellBottomOverviewOpen}
+          onClose={() => setIsBellBottomOverviewOpen(false)}
+          onOpenCustomizer={() => setIsBellBottomCustomizerOpen(true)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Bell Bottoms Style Customizer Modal */}
+        <BellBottomCustomizerModal
+          isOpen={isBellBottomCustomizerOpen}
+          onClose={() => setIsBellBottomCustomizerOpen(false)}
           onAddToCart={handleAddToCart}
         />
 
