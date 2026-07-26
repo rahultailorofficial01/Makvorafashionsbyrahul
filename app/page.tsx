@@ -20,6 +20,8 @@ import TrousersOverviewModal from "@/components/TrousersOverviewModal";
 import TrousersCustomizerModal from "@/components/TrousersCustomizerModal";
 import BellBottomOverviewModal from "@/components/BellBottomOverviewModal";
 import BellBottomCustomizerModal from "@/components/BellBottomCustomizerModal";
+import PathaniOverviewModal from "@/components/PathaniOverviewModal";
+import PathaniCustomizerModal from "@/components/PathaniCustomizerModal";
 
 export default function Home() {
   const [isFittingOpen, setIsFittingOpen] = useState(false);
@@ -31,6 +33,8 @@ export default function Home() {
   const [isTrousersCustomizerOpen, setIsTrousersCustomizerOpen] = useState(false);
   const [isBellBottomOverviewOpen, setIsBellBottomOverviewOpen] = useState(false);
   const [isBellBottomCustomizerOpen, setIsBellBottomCustomizerOpen] = useState(false);
+  const [isPathaniOverviewOpen, setIsPathaniOverviewOpen] = useState(false);
+  const [isPathaniCustomizerOpen, setIsPathaniCustomizerOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<ProductItem | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
@@ -59,6 +63,8 @@ export default function Home() {
       setIsSafariOverviewOpen(true);
     } else if (product.id === "MKV-004") {
       setIsBellBottomOverviewOpen(true);
+    } else if (product.id === "MKV-005") {
+      setIsPathaniOverviewOpen(true);
     } else {
       setQuickViewProduct(product);
     }
@@ -181,6 +187,21 @@ export default function Home() {
         <BellBottomCustomizerModal
           isOpen={isBellBottomCustomizerOpen}
           onClose={() => setIsBellBottomCustomizerOpen(false)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Pathani Suits Overview Page */}
+        <PathaniOverviewModal
+          isOpen={isPathaniOverviewOpen}
+          onClose={() => setIsPathaniOverviewOpen(false)}
+          onOpenCustomizer={() => setIsPathaniCustomizerOpen(true)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Pathani Suits Style Customizer Modal */}
+        <PathaniCustomizerModal
+          isOpen={isPathaniCustomizerOpen}
+          onClose={() => setIsPathaniCustomizerOpen(false)}
           onAddToCart={handleAddToCart}
         />
 
