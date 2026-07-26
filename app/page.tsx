@@ -16,6 +16,8 @@ import QuickViewModal from "@/components/QuickViewModal";
 import CheckoutModal from "@/components/CheckoutModal";
 import SafariCustomizerModal from "@/components/SafariCustomizerModal";
 import SafariOverviewModal from "@/components/SafariOverviewModal";
+import TrousersOverviewModal from "@/components/TrousersOverviewModal";
+import TrousersCustomizerModal from "@/components/TrousersCustomizerModal";
 
 export default function Home() {
   const [isFittingOpen, setIsFittingOpen] = useState(false);
@@ -23,6 +25,8 @@ export default function Home() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isSafariOverviewOpen, setIsSafariOverviewOpen] = useState(false);
   const [isSafariCustomizerOpen, setIsSafariCustomizerOpen] = useState(false);
+  const [isTrousersOverviewOpen, setIsTrousersOverviewOpen] = useState(false);
+  const [isTrousersCustomizerOpen, setIsTrousersCustomizerOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<ProductItem | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
@@ -45,7 +49,9 @@ export default function Home() {
   };
 
   const handleQuickView = (product: ProductItem) => {
-    if (product.id === "MKV-002") {
+    if (product.id === "MKV-001") {
+      setIsTrousersOverviewOpen(true);
+    } else if (product.id === "MKV-002") {
       setIsSafariOverviewOpen(true);
     } else {
       setQuickViewProduct(product);
@@ -139,6 +145,21 @@ export default function Home() {
         <SafariCustomizerModal
           isOpen={isSafariCustomizerOpen}
           onClose={() => setIsSafariCustomizerOpen(false)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Trousers Collection Overview Page */}
+        <TrousersOverviewModal
+          isOpen={isTrousersOverviewOpen}
+          onClose={() => setIsTrousersOverviewOpen(false)}
+          onOpenCustomizer={() => setIsTrousersCustomizerOpen(true)}
+          onAddToCart={handleAddToCart}
+        />
+
+        {/* Trousers Style Customizer Modal */}
+        <TrousersCustomizerModal
+          isOpen={isTrousersCustomizerOpen}
+          onClose={() => setIsTrousersCustomizerOpen(false)}
           onAddToCart={handleAddToCart}
         />
 
